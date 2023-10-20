@@ -1,7 +1,7 @@
-name: eclipse
-base: core20
+name: ECLIPSE_PACKAGE
+base: core22
 
-version: '2023-09'
+version: 'ECLIPSE_VERSION'
 summary: Extensible Tool Platform and Java IDE
 description:
   Eclipse provides IDEs and platforms for nearly every language and architecture.
@@ -11,6 +11,8 @@ description:
 
 grade: devel
 confinement: strict
+
+compression: lzo
 
 architectures:
   - build-on: amd64
@@ -43,9 +45,9 @@ plugs:
 parts:
   eclipse:
     plugin: dump
-    source:
-      - on amd64: https://download.eclipse.org/technology/epp/downloads/release/2023-09/R/eclipse-java-2023-09-R-linux-gtk-x86_64.tar.gz
-      - on arm64: https://download.eclipse.org/technology/epp/downloads/release/2023-09/R/eclipse-java-2023-09-R-linux-gtk-aarch64.tar.gz
+    source-type: tar
+    source: ECLIPSE_DOWNLOAD
+    source-checksum: ECLIPSE_CHECKSUM
     build-attributes:
       - no-patchelf
     override-build: |
