@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 
 export ECLIPSE_PACKAGE=${ECLIPSE_PACKAGE:='eclipse-java'}
 
-. ./set-eclipse-package.sh
+./set-eclipse-package.sh
 
 snapcraft try --debug
 

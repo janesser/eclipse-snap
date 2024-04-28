@@ -1,5 +1,16 @@
-latest: 2023-09
-2023-09:
+# all sources should have &r=1 amended
+latest: 2024-03R
+2024-03R:
+  eclipse-java:
+    source: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-03/R/eclipse-java-2024-03-R-linux-gtk-x86_64.tar.gz&mirror_id=1190
+    checksum: "sha512/973c94a0a029c29d717823a53c3a65f99fa53d51f605872c5dd854620e16cd4cb2c2ff8a5892cd550a70ab19e1a0a0d2e792661e936bd3d2bef4532bc533048b"
+  eclipse-pde:
+    source: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-03/R/eclipse-committers-2024-03-R-linux-gtk-x86_64.tar.gz&r=1
+    checksum: "sha512/db836b79a79ac2f8981d9a7f3bd988368fa807bf06526c6e145c9c0835458283b5625a2aec7e7c84c3bb1b5bdcb121423e9eec1890bb431d1754829f8f060742"
+  eclipse-cdt:
+    source: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-03/R/eclipse-cpp-2024-03-R-linux-gtk-x86_64.tar.gz&r=1
+    checksum: "sha512/ebbde32b16fbd49716c3d5fef40fe6e510115f1698cf35f9fde23f11ba2be11a524d6e5179b15a1cf30af135b8f27a3efac301111b6160e6cdac9977a42082fd"
+2023-09R:
   eclipse-java:
     source: https://download.eclipse.org/technology/epp/downloads/release/2023-09/R/eclipse-java-2023-09-R-linux-gtk-x86_64.tar.gz
     checksum: "sha512/eb2c72dbc545d3e828430c359e6c76ca9f4184095504bec7b0ce675fffea74cb558aa307227fb533993f703fbcafaab6ca2daec3200a0987a96ca9cf8dbcee01"
