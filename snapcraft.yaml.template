@@ -40,11 +40,10 @@ plugs:
     interface: personal-files
     read:
     - $HOME/.gitconfig
-  # FIXME exclude .m2 secrets
   personal-maven-cache:
     interface: personal-files
     write:
-    - $HOME/.m2
+    - $HOME/.m2/repo
   personal-eclipse-config:
     interface: personal-files
     write:
