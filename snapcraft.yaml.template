@@ -1,7 +1,10 @@
-name: ECLIPSE_PACKAGE
+ename: !- $env[ECLIPSE_PACKAGE]
+name: !? .ename
 base: core22
 
-version: 'ECLIPSE_VERSION'
+epackages: !- $import('eclipse-packages.yaml')
+version: !? .epackages.latest
+
 summary: Extensible Tool Platform and Java IDE
 website: https://eclipse.org/ide
 description:
@@ -20,7 +23,7 @@ architectures:
   - build-on: arm64
 
 apps:
-  eclipse: # ECLISE_COMMAND
+  !? .ename:
     command: bin/eclipse-wrapper
     environment:
       __NV_PRIME_RENDER_OFFLOAD: 1
@@ -60,8 +63,8 @@ parts:
   eclipse:
     plugin: dump
     source-type: tar
-    source: ECLIPSE_DOWNLOAD
-    source-checksum: ECLIPSE_CHECKSUM
+    source: !? $_.epackages[$_.version][$_.name].source
+    source-checksum: !? $_.epackages[$_.version][$_.name].checksum
     build-attributes:
       - no-patchelf
     override-build: |
@@ -77,3 +80,8 @@ parts:
   eclipse_desktop:
     plugin: dump
     source: snap/gui
+
+# https://forum.snapcraft.io/t/amd-oss-graphics-drivers-missing-access-to-amdgpu-ids-file/12067/14
+layout:
+  /usr/share/libdrm:
+    bind: $SNAP/usr/share/libdrm
