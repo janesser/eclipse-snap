@@ -15,6 +15,11 @@ Attempt to merge with snapcrafters here: <https://github.com/snapcrafters/eclips
 1. edit `eclipse-packages.yaml` according to your needs, and what is available at <www.eclipse.org/download> (see comment on query-params tweaking)
 1. `ECLIPSE_PACKAGE=eclipse-pde ./try-build.sh # other packages declared will work`
 
+### Troubleshoot
+
+    # when build timeouts
+    sudo systemctl restart snap.lxd.daemon
+
 ## Disclaimer
 
 This won't be published to snap repos, since ment to be used in local build mode only.

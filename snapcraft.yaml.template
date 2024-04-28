@@ -79,7 +79,7 @@ parts:
     plugin: dump
     source: snap/gui
 
-# https://forum.snapcraft.io/t/amd-oss-graphics-drivers-missing-access-to-amdgpu-ids-file/12067/14
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1710326
 layout:
-  /usr/share/libdrm:
-    bind: $SNAP/usr/share/libdrm
+  /usr/shar/libdrm:
+    bind: $SNAP/gnome-platform/usr/share/libdrm
