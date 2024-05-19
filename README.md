@@ -17,6 +17,8 @@ Attempt to merge with snapcrafters here: <https://github.com/snapcrafters/eclips
 
 ### Troubleshoot
 
+Eclipse may or may not (depending on its configuration) be prepared to run in such a limited setup.
+
     # when build timeouts
     sudo systemctl restart snap.lxd.daemon
 

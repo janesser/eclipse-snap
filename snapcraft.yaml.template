@@ -26,6 +26,7 @@ apps:
     command: bin/eclipse-wrapper
     environment:
       __NV_PRIME_RENDER_OFFLOAD: 1
+      __GLX_VENDOR_LIBRARY_NAME: nvidia
     extensions: [gnome]
     desktop: eclipse.desktop
     plugs:
@@ -43,19 +44,17 @@ plugs:
   personal-maven-cache:
     interface: personal-files
     write:
-    - $HOME/.m2/repo
+    - $HOME/.m2
   personal-eclipse-config:
     interface: personal-files
     write:
     - $HOME/.eclipse
+    - $HOME/.swt
+    - $HOME/eclipse-workspace
   sources-dir:
     interface: personal-files
     write:
     - $HOME/projs
-  jdk:
-    interface: content
-    target: $SNAP/jdk
-    default-provider: openjdk
 
 parts:
   eclipse:
