@@ -2,10 +2,16 @@
 SOURCE=$(dirname -- ${BASH_SOURCE[0]})
 echo source-root: $SOURCE
 
-ECLIPSE_PACKAGE=${ECLIPSE_PACKAGE:='eclipse-java'}
+export ECLIPSE_PACKAGE=${ECLIPSE_PACKAGE:='eclipse-java'}
+echo setting up for $ECLIPSE_PACKAGE
 
 SNAPCRAFT_YAML=$SOURCE/snap/snapcraft.yaml
 
-YGLU_ENABLE_ENV=true pipx run yglu snapcraft.yaml.template | tee $SNAPCRAFT_YAML
+YGLU_ENABLE_ENV=true pipx run --pip-args "-r requirements.txt" yglu snapcraft.yaml.template | tee $SNAPCRAFT_YAML
 
-echo written $SNAPCRAFT_YAML for $ECLIPSE_PACKAGE.
+if [ $? -eq 0 ]; then
+    echo written $SNAPCRAFT_YAML for $ECLIPSE_PACKAGE.
+else
+    echo ERROR see above.
+    return 1
+fi
