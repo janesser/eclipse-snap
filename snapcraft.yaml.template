@@ -30,17 +30,23 @@ apps:
     extensions: [gnome]
     desktop: eclipse.desktop
     plugs:
-      - personal-git-global
+      - personal-gitconfig
+      - personal-sshid
+      - git-plug
       - personal-maven-cache
       - personal-eclipse-config
       - sources-dir
       - network
 
 plugs:
-  personal-git-global:
+  personal-gitconfig:
     interface: personal-files
     read:
     - $HOME/.gitconfig
+  personal-sshid:
+    interface: personal-files
+    read:
+    - $HOME/.ssh
   personal-maven-cache:
     interface: personal-files
     write:
@@ -50,11 +56,16 @@ plugs:
     write:
     - $HOME/.eclipse
     - $HOME/.swt
-    - $HOME/eclipse-workspace
+    # ln -s ~/snap/eclipse-pde/current/workspace/ ~/eclipse-workspace/
   sources-dir:
     interface: personal-files
     write:
     - $HOME/projs
+  git-plug:
+    interface: content
+    content: git-cli
+    target: $SNAP/git-snap
+    default-provider: git-confined
 
 parts:
   eclipse:
@@ -80,5 +91,11 @@ parts:
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1710326
 layout:
-  /usr/shar/libdrm:
+  /usr/share/libdrm:
     bind: $SNAP/gnome-platform/usr/share/libdrm
+  $SNAP/usr/bin:
+    bind: $SNAP/git-snap/bin
+  /usr/libexec/git-core:
+    symlink: $SNAP/git-snap/git-core
+  /usr/share/git-core/templates:
+    symlink: $SNAP/git-snap/templates
