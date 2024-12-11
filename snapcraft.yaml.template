@@ -1,6 +1,6 @@
 ename: !- $env[ECLIPSE_PACKAGE]
 name: !? .ename
-base: core22
+base: core24
 
 epackages: !- $import('eclipse-packages.yaml')
 version: !? .epackages.latest
@@ -17,16 +17,17 @@ confinement: strict
 
 compression: lzo
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+platforms:
+  amd64:
+    build-on: amd64
+
+lint:
+  ignore:
+    - library
 
 apps:
   !? .ename:
     command: bin/eclipse-wrapper
-    environment:
-      __NV_PRIME_RENDER_OFFLOAD: 1
-      __GLX_VENDOR_LIBRARY_NAME: nvidia
     extensions: [gnome]
     desktop: eclipse.desktop
     plugs:
@@ -56,14 +57,13 @@ plugs:
     write:
     - $HOME/.eclipse
     - $HOME/.swt
-    # ln -s ~/snap/eclipse-pde/current/workspace/ ~/eclipse-workspace/
+    # ln -sf ~/snap/eclipse-pde/current/workspace/ ~/eclipse-workspace/
   sources-dir:
     interface: personal-files
     write:
     - $HOME/projs
-  git-plug:
+  git-cli:
     interface: content
-    content: git-cli
     target: $SNAP/git-snap
     default-provider: git-confined
 
@@ -75,11 +75,8 @@ parts:
     source-checksum: !? $_.epackages[$_.version][$_.name].checksum
     build-attributes:
       - no-patchelf
-    override-build: |
-      snapcraftctl build
-      chmod 555 $SNAPCRAFT_PART_INSTALL/eclipse
-      chmod 555 $SNAPCRAFT_PART_INSTALL/plugins
-      chmod -R 555 $SNAPCRAFT_PART_INSTALL/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.*
+    permissions:
+      - mode: "555"
   wrappers:
     plugin: dump
     source: snap/local/wrappers
@@ -89,11 +86,8 @@ parts:
     plugin: dump
     source: snap/gui
 
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1710326
 layout:
-  /usr/share/libdrm:
-    bind: $SNAP/gnome-platform/usr/share/libdrm
-  $SNAP/usr/bin:
+  /usr/local/bin:
     bind: $SNAP/git-snap/bin
   /usr/libexec/git-core:
     symlink: $SNAP/git-snap/git-core

@@ -11,15 +11,15 @@ export ECLIPSE_PACKAGE=${ECLIPSE_PACKAGE:='eclipse-java'}
 
 # snapcraft clean
 # sudo less /var/snap/lxd/common/lxd/logs/lxd.log
-snapcraft try --debug
+snapcraft pack --debug
 
-sudo snap try prime # --devmode
+sudo snap install *.snap --dangerous
 
 sudo snap connect $ECLIPSE_PACKAGE:personal-gitconfig
 sudo snap connect $ECLIPSE_PACKAGE:personal-sshid
 sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
 sudo snap connect $ECLIPSE_PACKAGE:personal-eclipse-config
 sudo snap connect $ECLIPSE_PACKAGE:sources-dir
-sudo snap connect $ECLIPSE_PACKAGE:git-plug git-confined
+sudo snap connect $ECLIPSE_PACKAGE:git-cli git-confined:git-cli
 
 # snap run $ECLIPSE_PACKAGE
