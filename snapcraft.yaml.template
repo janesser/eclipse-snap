@@ -31,15 +31,22 @@ apps:
     extensions: [gnome]
     desktop: eclipse.desktop
     plugs:
+      - personal-sourcedir
+      - personal-workspace
       - personal-gitconfig
       - personal-sshid
-      - git-plug
       - personal-maven-cache
-      - personal-eclipse-config
-      - sources-dir
       - network
 
 plugs:
+  personal-sourcedir:
+    interface: personal-files
+    write:
+    - $HOME/projs
+  personal-workspace:
+    interface: personal-files
+    write:
+    - $HOME/eclipse-workspace
   personal-gitconfig:
     interface: personal-files
     read:
@@ -52,20 +59,6 @@ plugs:
     interface: personal-files
     write:
     - $HOME/.m2
-  personal-eclipse-config:
-    interface: personal-files
-    write:
-    - $HOME/.eclipse
-    - $HOME/.swt
-    # ln -sf ~/snap/eclipse-pde/current/workspace/ ~/eclipse-workspace/
-  sources-dir:
-    interface: personal-files
-    write:
-    - $HOME/projs
-  git-cli:
-    interface: content
-    target: $SNAP/git-snap
-    default-provider: git-confined
 
 parts:
   eclipse:
@@ -77,6 +70,8 @@ parts:
       - no-patchelf
     permissions:
       - mode: "555"
+    after: 
+    - eclipse_deps
   wrappers:
     plugin: dump
     source: snap/local/wrappers
@@ -85,11 +80,7 @@ parts:
   eclipse_desktop:
     plugin: dump
     source: snap/gui
-
-layout:
-  /usr/local/bin:
-    bind: $SNAP/git-snap/bin
-  /usr/libexec/git-core:
-    symlink: $SNAP/git-snap/git-core
-  /usr/share/git-core/templates:
-    symlink: $SNAP/git-snap/templates
+  eclipse_deps:
+    plugin: nil
+    stage-snaps:
+    - git-confined

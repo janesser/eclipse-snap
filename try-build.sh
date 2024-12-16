@@ -9,17 +9,26 @@ export ECLIPSE_PACKAGE=${ECLIPSE_PACKAGE:='eclipse-java'}
 
 . ./set-eclipse-package.sh
 
-# snapcraft clean
+CLEAN=${CLEAN:=false}
+
+if $CLEAN; then
+    sudo snap remove --purge $ECLIPSE_PACKAGE
+    snapcraft clean
+fi
+
 # sudo less /var/snap/lxd/common/lxd/logs/lxd.log
 snapcraft pack --debug
 
-sudo snap install *.snap --dangerous
+sudo snap install $ECLIPSE_PACKAGE*.snap --dangerous
+
+sudo snap connect $ECLIPSE_PACKAGE:personal-sourcedir
+sudo snap connect $ECLIPSE_PACKAGE:personal-workspace
 
 sudo snap connect $ECLIPSE_PACKAGE:personal-gitconfig
 sudo snap connect $ECLIPSE_PACKAGE:personal-sshid
 sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
-sudo snap connect $ECLIPSE_PACKAGE:personal-eclipse-config
-sudo snap connect $ECLIPSE_PACKAGE:sources-dir
-sudo snap connect $ECLIPSE_PACKAGE:git-cli git-confined:git-cli
 
-# snap run $ECLIPSE_PACKAGE
+AUTORUN=${AUTORUN:=false}
+if $AUTORUN; then
+    snap run $ECLIPSE_PACKAGE &
+fi
