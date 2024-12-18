@@ -1,12 +1,21 @@
 #!/bin/bash
-EXTRA_ARGS=()
-if [ -f "$SNAP_USER_DATA/eclipse.ini" ]; then
-    # Allow the user to override the eclipse.ini with their own version
-    EXTRA_ARGS+=("--launcher.ini" "$SNAP_USER_DATA/eclipse.ini")
+
+# will update moving $SNAP_USER_DATA
+ECLIPSE_INI=$SNAP_USER_DATA/eclipse.ini
+
+if [ -f "$ECLIPSE_INI"]; then
+    echo "found $ECLIPSE_INI"
 else
-    echo "To override eclipse.ini, copy the default file to '$SNAP_USER_DATA/eclipse.ini' and modify to suit."
+    cp $SNAP/eclipse.ini $ECLIPSE_INI
+    mkdir -p $SNAP_USER_DATA/eclipse_home
+    echo -Declipse.home.location=file:$SNAP_USER_DATA/eclipse_home | tee -a $ECLIPSE_INI
+    mkdir -p $SNAP_USER_DATA/p2_data
+    echo -Declipse.p2.data.area=$SNAP_USER_DATA/p2_data | tee -a $ECLIPSE_INI
 fi
 
+EXTRA_ARGS+=("--launcher.ini" "$ECLIPSE_INI")
+
+# see snap plug personal-workspace
 ECLIPSE_WORKSPACE=/home/$USER/eclipse-workspace
 echo Using workspace at $ECLIPSE_WORKSPACE.
 

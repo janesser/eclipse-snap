@@ -70,7 +70,7 @@ parts:
       - no-patchelf
     permissions:
       - mode: "555"
-    after: 
+    after:
     - eclipse_deps
   wrappers:
     plugin: dump
@@ -84,3 +84,11 @@ parts:
     plugin: nil
     stage-snaps:
     - git-confined
+
+layout:
+  /usr/local/bin:
+    bind: $SNAP/usr/bin
+  /usr/libexec/git-core:
+    symlink: $SNAP/usr/libexec/git-core
+  /usr/share/git-core:
+    symlink: $SNAP/usr/share/git-core
