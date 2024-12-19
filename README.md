@@ -97,7 +97,9 @@ sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
 
 * pde product can't load libswt
 
-  SOLUTION: tbd
+  SOLUTION: move configuration to a locatioan where libswt may be loaded with 'x' (which could be $SNAP_USER_DATA), but not any of personal-files-interface locations.
+
+  <https://github.com/eclipse-platform/eclipse.platform.swt/issues/1669>
 
   ```text
   java.lang.UnsatisfiedLinkError: Could not load SWT library. Reasons: 
@@ -107,17 +109,6 @@ sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
     Can't load library: /home/jan/.swt/lib/linux/x86_64/libswt-gtk-4967r8.so
     Can't load library: /home/jan/.swt/lib/linux/x86_64/libswt-gtk.so
     Can't load library: /home/jan/.swt/lib/linux/x86_64/libswt.so
-  ```
-
-  ```bash
-    $ find $SNAP -name "libswt*"
-    $ find $SNAP_DATA -name "libswt*"
-    $ find $SNAP_USER_DATA -name "libswt*"
-      /home/jan/snap/eclipse-pde/x8/amd64/configuration/org.eclipse.osgi/477/0/.cp/libswt-webkit-gtk-4967r8 .so
-      /home/jan/snap/eclipse-pde/x8/amd64/configuration/org.eclipse.osgi/477/0/.cp/libswt-gtk-4967r8.so
-      /home/jan/snap/eclipse-pde/x8/amd64/configuration/org.eclipse.osgi/477/0/.cp/libswt-atk-gtk-4967r8.so
-      /home/jan/snap/eclipse-pde/x8/amd64/configuration/org.eclipse.osgi/477/0/.cp/libswt-cairo-gtk-4967r8.so
-      /home/jan/snap/eclipse-pde/x8/amd64/configuration/org.eclipse.osgi/477/0/.cp/libswt-pi3-gtk-4967r8.so
   ```
 
 * "jni.cpp could not determine current working directory"
@@ -150,6 +141,17 @@ sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
           at jdk.internal.util.SystemProps.initProperties(java.base@21.0.5/SystemProps.java:67)
           at java.lang.System.initPhase1(java.base@21.0.5/System.java:2162)
   ```
+
+* eclipse points to versionized snap path
+
+![target platform path](target_platform_path.png)
+
+* gnome file picker returns difficult path
+
+![difficult file handle](difficult_file_handle.png)
+
+instead if within `personal-sourcedir` copy path from picker
+![copy location from picker](copy_location_from_picker.png)
 
 ## Disclaimer (for now)
 
