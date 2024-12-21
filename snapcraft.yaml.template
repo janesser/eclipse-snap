@@ -30,6 +30,17 @@ apps:
     command: bin/eclipse-wrapper
     extensions: [gnome]
     desktop: eclipse.desktop
+    environment:
+      ## https://docs.gtk.org/glib/running.html#environment-variables
+      G_MESSAGES_DEBUG: all
+      ## https://docs.mesa3d.org/envvars.html
+      LIBGL_DEBUG: 1
+      DRI_PRIME_DEBUG: 1
+      MESA_DEBUG: 1
+      MESA_VK_DEVICE_SELECT_DEBUG: 1
+      # AMD_DEBUG: all
+      ## https://trac.webkit.org/wiki/EnvironmentVariables
+      WEBKIT_DEBUG: all
     plugs:
       - personal-sourcedir
       - personal-workspace
@@ -49,7 +60,7 @@ plugs:
     - $HOME/eclipse-workspace
   personal-gitconfig:
     interface: personal-files
-    read:
+    write:
     - $HOME/.gitconfig
   personal-sshid:
     interface: personal-files
