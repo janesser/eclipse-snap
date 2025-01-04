@@ -63,9 +63,7 @@ plugs:
     write:
     - $HOME/.gitconfig
   personal-sshid:
-    interface: personal-files
-    read:
-    - $HOME/.ssh
+    interface: ssh-keys
   personal-maven-cache:
     interface: personal-files
     write:

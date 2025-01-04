@@ -16,6 +16,8 @@ EXTRA_ARGS+=("--launcher.ini" "$ECLIPSE_INI")
 
 # get .gitconfig mapped
 ln -sf $SNAP_REAL_HOME/.gitconfig ~/.gitconfig
+ln -sf $SNAP_REAL_HOME/.ssh ~/.ssh
+
 
 # see snap plug personal-workspace
 ECLIPSE_WORKSPACE=/home/$USER/eclipse-workspace
