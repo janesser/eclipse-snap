@@ -1,13 +1,15 @@
-# Eclipse (confined snap edition)
+# Eclipse (Unofficial snap distribution of eclipse-*)
 
-Fork from <https://github.com/snapcrafters/eclipse>
+Ships a little altered approach
 
-Ships a few altered approaches
+* flavored eclipse - any eclipse-package can be snapped
+* goes along a latest snap confinement.
+Selected touchpoints with the home-directory remain.
 
-* flavored eclipse - any eclipse-package can be snapped, see <https://github.com/snapcrafters/eclipse/pull/10> for discussion related.
-* goes along a latest snap confinement. Selected touchpoints with the home-directory remain.
+Attempt to merge with other eclipse snaps
 
-Attempt to merge with snapcrafters here: <https://github.com/snapcrafters/eclipse/pull/56>.
+* <https://github.com/snapcrafters/eclipse/pull/56>
+* <https://github.com/eclipse-linuxtools/eclipse-ide-snap/issues/9>
 
 ## Wanna try?
 
