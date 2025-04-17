@@ -1,13 +1,4 @@
 ename: !- $env[ECLIPSE_PACKAGE]
-<<<<<<< HEAD
-name: !? .ename
-base: core24
-
-epackages: !- $import('eclipse-packages.yaml')
-version: !? .epackages.latest
-
-summary: Extensible Tool Platform and Java IDE
-=======
 epackages: !- $import('eclipse-packages.yaml')
 
 name: !? .ename
@@ -17,7 +8,6 @@ version: !? .epackages.latest
 
 summary: Extensible Tool Platform and Java IDE
 website: https://eclipse.org/ide
->>>>>>> a6f9f55 (snapcraft.yaml.template)
 description:
   Eclipse provides IDEs and platforms for nearly every language and architecture.
   We are famous for our Java IDE, C/C++, JavaScript and PHP IDEs built on extensible
@@ -25,25 +15,11 @@ description:
   extensive collection of add-on tools available for software developers.
 
 grade: stable
-<<<<<<< HEAD
-confinement: strict
-
-compression: lzo
-
-platforms:
-  amd64:
-    build-on: amd64
-
-lint:
-  ignore:
-    - library
-=======
 confinement: classic
 
 architectures: # TODO use for loop here
 - build-on: amd64
 - build-on: arm64
->>>>>>> a6f9f55 (snapcraft.yaml.template)
 
 apps:
   !? .ename:

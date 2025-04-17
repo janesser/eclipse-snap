@@ -10,7 +10,7 @@ chmod 666 $ECLIPSE_INI
 mkdir -p $SNAP_USER_DATA/eclipse_home
 echo -Declipse.home.location=file:$SNAP_USER_DATA/eclipse_home | tee -a $ECLIPSE_INI
 mkdir -p $SNAP_USER_DATA/p2_data
-echo -Declipse.p2.data.area=te$SNAP_USER_DATA/p2_data | tee -a $ECLIPSE_INI
+echo -Declipse.p2.data.area=$SNAP_USER_DATA/p2_data | tee -a $ECLIPSE_INI
 
 EXTRA_ARGS+=("--launcher.ini" "$ECLIPSE_INI")
 

@@ -27,6 +27,7 @@ if $ECLIPSE_CONFINED; then
     sudo snap connect $ECLIPSE_PACKAGE:personal-gitconfig
     sudo snap connect $ECLIPSE_PACKAGE:personal-sshid
     sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
+    sudo snap connect $ECLIPSE_PACKAGE:hugepages-control
 else
     sudo snap install ./$(echo $ECLIPSE_PACKAGE)_*_$(dpkg --print-architecture).snap --dangerous --classic
 fi

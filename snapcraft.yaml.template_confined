@@ -19,7 +19,7 @@ compression: lzo
 
 platforms:
   amd64:
-    build-on: amd64
+  arm64:
 
 apps:
   !? .ename:
@@ -45,6 +45,7 @@ apps:
       - personal-maven-cache
       - network
       - network-bind
+      - hugepages-control
 
 plugs:
   personal-sourcedir:
