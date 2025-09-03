@@ -1,5 +1,6 @@
 ename: !- $env[ECLIPSE_PACKAGE]
-name: !? .ename
+eprefix: !- $env[SNAP_PREFIX]
+name: !? $_.eprefix + $_.ename
 base: core24
 
 epackages: !- $import('eclipse-packages.yaml')
@@ -19,10 +20,14 @@ compression: lzo
 
 platforms:
   amd64:
+    build-on: [amd64]
+    build-for: [amd64]
   arm64:
+    build-on: [arm64]
+    build-for: [arm64]
 
 apps:
-  !? .ename:
+  !? $_.name:
     command: bin/eclipse-wrapper
     extensions: [gnome]
     desktop: eclipse.desktop
@@ -74,8 +79,8 @@ parts:
     source: 
       # TODO use for loop here
       # TODO use source-checksum once supported in multiarch setting
-      - on amd64: !? .epackages[$_.version][$_.name].amd64.source
-      - on arm64: !? .epackages[$_.version][$_.name].arm64.source
+      - on amd64: !? .epackages[$_.version][$_.ename].amd64.source
+      - on arm64: !? .epackages[$_.version][$_.ename].arm64.source
     build-attributes:
       - no-patchelf
     permissions:

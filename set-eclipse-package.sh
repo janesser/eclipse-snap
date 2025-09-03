@@ -17,7 +17,7 @@ fi
 YGLU_ENABLE_ENV=true pipx run --pip-args "-r requirements.txt" yglu $SNAPCRAFT_YAML_TEMPLATE | tee $SNAPCRAFT_YAML
 
 if [ $? -eq 0 ]; then
-    echo written $SNAPCRAFT_YAML for $ECLIPSE_PACKAGE.
+    echo written $SNAPCRAFT_YAML for $SNAP_NAME.
 else
     echo ERROR see above.
     return 1
