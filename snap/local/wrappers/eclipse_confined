@@ -18,9 +18,7 @@ EXTRA_ARGS+=("--launcher.ini" "$ECLIPSE_INI")
 ln -sf $SNAP_REAL_HOME/.gitconfig ~/.gitconfig
 ln -sf $SNAP_REAL_HOME/.ssh ~/.ssh
 
-
-# see snap plug personal-workspace
-ECLIPSE_WORKSPACE=/home/$USER/eclipse-workspace
-echo Using workspace at $ECLIPSE_WORKSPACE.
+ECLIPSE_WORKSPACE=$SNAP_USER_DATA/eclipse_workspace
+mkdir -p $ECLIPSE_WORKSPACE
 
 exec "$SNAP/usr/lib/eclipse/eclipse" -configuration "${SNAP_USER_DATA}/${SNAP_ARCH}/configuration" -data "$ECLIPSE_WORKSPACE" "${EXTRA_ARGS[@]}" "$@"
