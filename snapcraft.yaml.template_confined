@@ -43,30 +43,19 @@ apps:
       ## https://trac.webkit.org/wiki/EnvironmentVariables
       WEBKIT_DEBUG: all
     plugs:
-      - personal-sourcedir
-      - personal-workspace
       - personal-gitconfig
-      - personal-sshid
       - personal-maven-cache
+      - home # suppose checked out sources here
       - network
       - network-bind
       - hugepages-control
+      - ssh-keys
 
 plugs:
-  personal-sourcedir:
-    interface: personal-files
-    write:
-    - $HOME/projs
-  personal-workspace:
-    interface: personal-files
-    write:
-    - $HOME/eclipse-workspace
   personal-gitconfig:
     interface: personal-files
     write:
     - $HOME/.gitconfig
-  personal-sshid:
-    interface: ssh-keys
   personal-maven-cache:
     interface: personal-files
     write:

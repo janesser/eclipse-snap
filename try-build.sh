@@ -28,12 +28,10 @@ snapcraft pack --debug
 
 if $ECLIPSE_CONFINED; then
     sudo snap install ./$(echo $SNAP_NAME)_*_$(dpkg --print-architecture).snap --dangerous
-    sudo snap connect $SNAP_NAME:personal-sourcedir
-    sudo snap connect $SNAP_NAME:personal-workspace
     sudo snap connect $SNAP_NAME:personal-gitconfig
-    sudo snap connect $SNAP_NAME:personal-sshid
     sudo snap connect $SNAP_NAME:personal-maven-cache
     sudo snap connect $SNAP_NAME:hugepages-control
+    sudo snap connect $SNAP_NAME:ssh-keys
 else
     sudo snap install ./$(echo $SNAP_NAME)_*_$(dpkg --print-architecture).snap --dangerous --classic
 fi

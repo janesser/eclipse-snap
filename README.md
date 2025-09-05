@@ -22,22 +22,18 @@ Attempt to merge with other eclipse snaps
 the snap shares following pathes with the users $HOME (accessible from both ends)
 (personal-files interface restricts file-access to 'rw')
 
-* `$HOME/eclipse-workspace` eclipse* will start with this workspace set
 * `$HOME/.m2` maven-cached files are shared (may contain maven secrets eventually)
 * `$HOME/.gitconfig` share git user settings
 * `$HOME/.ssh` share ssh-keys and cares about known_hosts fingerprints
-* `$HOME/projs` where your sourcecode remains (bind-mount/symlink in case you have other structures at hand)
 
 Once you assured that these locations are okay to be connected to the confined eclipse, use below script.
 
 ```bash
-export ECLIPSE_PACKAGE=eclipse-pde
-sudo snap connect $ECLIPSE_PACKAGE:personal-sourcedir
-sudo snap connect $ECLIPSE_PACKAGE:personal-workspace
+export ECLIPSE_PACKAGE=janesser-eclipse-pde
 
 sudo snap connect $ECLIPSE_PACKAGE:personal-gitconfig
-sudo snap connect $ECLIPSE_PACKAGE:personal-sshid
 sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
+sudo snap connect $ECLIPSE_PACKAGE:ssh-keys
 ```
 
 ### Troubleshoot
