@@ -155,6 +155,10 @@ instead if within `personal-sourcedir` copy path from picker
 
 This won't be published to snap repos, since ment to be used in local build mode only.
 
+### Present releases
+
+[![Get it from the Snap Store](https://snapcraft.io/en/dark/install.svg)](https://snapcraft.io/janesser-eclipse-pde)
+
 ## Shout out
 
 <https://github.com/lbovet/yglu>
