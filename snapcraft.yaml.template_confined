@@ -52,11 +52,11 @@ apps:
       - ssh-keys
 
 plugs:
-  personal-gitconfig:
+  dot-gitconfig:
     interface: personal-files
     write:
     - $HOME/.gitconfig
-  personal-maven-cache:
+  dot-m2:
     interface: personal-files
     write:
     - $HOME/.m2

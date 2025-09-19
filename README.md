@@ -31,8 +31,8 @@ Once you assured that these locations are okay to be connected to the confined e
 ```bash
 export ECLIPSE_PACKAGE=janesser-eclipse-pde
 
-sudo snap connect $ECLIPSE_PACKAGE:personal-gitconfig
-sudo snap connect $ECLIPSE_PACKAGE:personal-maven-cache
+sudo snap connect $ECLIPSE_PACKAGE:dot-gitconfig
+sudo snap connect $ECLIPSE_PACKAGE:dot-m2
 sudo snap connect $ECLIPSE_PACKAGE:ssh-keys
 ```
 
