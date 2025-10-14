@@ -43,8 +43,8 @@ apps:
       ## https://trac.webkit.org/wiki/EnvironmentVariables
       WEBKIT_DEBUG: all
     plugs:
-      - personal-gitconfig
-      - personal-maven-cache
+      - dot-gitconfig
+      - dot-m2
       - home # suppose checked out sources here
       - network
       - network-bind
@@ -108,6 +108,8 @@ parts:
     plugin: nil
     stage-snaps:
     - git-confined
+    stage-packages:
+    - openjdk-25-jdk-headless
 
 layout:
   /usr/local/bin:

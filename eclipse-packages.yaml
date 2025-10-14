@@ -1,5 +1,13 @@
 # all sources should have &r=1 amended
-latest: 2025-06R
+latest: 2025-09R
+2025-09R:
+  eclipse-pde:
+    amd64: 
+      source: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-09/R/eclipse-committers-2025-09-R-linux-gtk-x86_64.tar.gz&r=1
+      checksum: "sha512/0183a2c9904be6d86cd966721a09230ad454b432e3928f99e4fe5708582f91e0fc5a5f00fea1f903d907f69d2af40fef03c68488bda23c85bf22dc79140c1c4f"
+    arm64:
+      source: TODO
+      checksum: TODO
 2025-06R:
   eclipse-pde:
     amd64:
