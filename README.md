@@ -13,6 +13,8 @@ Attempt to merge with other eclipse snaps
 
 ## Wanna try?
 
+[![janesser-eclipse-pde](https://snapcraft.io/janesser-eclipse-pde/badge.svg)](https://snapcraft.io/janesser-eclipse-pde)
+
 1. `git clone https://github.com/janesser/eclipse-snap.git`
 2. edit `eclipse-packages.yaml` according to your needs, and what is available at <www.eclipse.org/download> (see comment on query-params tweaking)
 3. `./try-build.sh eclipse-pde` other packages declared will work
